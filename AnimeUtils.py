@@ -5,7 +5,7 @@ from unidecode import unidecode
 import base64
 import time
 
-# ----------------------FetchURL------------------------#
+
 
 
 def FetchURL(driver, url):
@@ -29,11 +29,6 @@ def FetchURL(driver, url):
         break
 
     return ret_p
-# ----------------------FetchURL--------------------------#
-
-# /~\_//~\_//~\_//~\_//~\_//~\_//~\_//~\_//~\_//~\_//~ \_/#
-
-# ----------------------FetchInfo-------------------------#
 
 
 def FetchInfo(driver, url):
@@ -48,15 +43,15 @@ def FetchInfo(driver, url):
     final_counter = 0
     for final in finals:
         fo = open('anime_links.csv', 'a+')
+        
         final_counter += 1
         ep_url = "http://kissanime.to" + final['href']
         ep_name = str(unidecode(final.text)).strip().split('Episode')[1]
         time.sleep(1)
         ep_detail = ep_name + "~" + FetchURL(driver, ep_url)
-        # print ep_detail
 
         fo.write(ep_detail)
         fo.write("\n")
         print ("Link count: " + str(final_counter))
         fo.close()
-#-----------------------FetchInfo------------------------#
+
