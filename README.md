@@ -9,3 +9,6 @@ A python utility to extract download links for animes on kissanime.to
 #Troubleshooting:
 
   On any error, please restart the script
+
+#Credits:
+[Ashish Bansal](https://github.com/Ashish-Bansal) for helping and debugging 
