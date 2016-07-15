@@ -55,7 +55,7 @@ def FetchInfo(driver, url):
 
             final_counter += 1
             ep_url = "http://kissanime.to" + final['href']
-            ep_name = str(unidecode(final.text)).strip().split('Episode')[1]
+            ep_name = str(unidecode(final.text)).strip()
             time.sleep(1)
             ep_detail = ep_name + "~" + FetchURL(driver, ep_url)
 
@@ -74,20 +74,32 @@ def csv2html(anime_name, url):
     fh = open('anime_links.html', 'wb')
 
     fh_pre_data = '''
-                <html>
-                <head>
-                <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-                <style>
-                body{
-                font-family:'Raleway',Arial;
-                }
-                </style>
-                </head>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<style>
+body{
 
-                <body>
-                <center><h1> <a href="https://github.com/snbk97/KissAnimeDownloader">Kiss Anime Downloader</a></h1></center>
-                <hr></br>
-                '''
+font-family:'Raleway',Arial;
+color:green;
+}
+td{
+    padding:10px
+
+}
+#main_table{
+    -webkit-box-shadow: 0px 13px 21px -7px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 13px 21px -7px rgba(0,0,0,0.6);
+    box-shadow: 0px 13px 21px -7px rgba(0,0,0,0.6);
+    border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+<center><h1> <a href="https://github.com/snbk97/KissAnimeDownloader">Kiss Anime Downloader</a></h1></center>
+<hr></br>
+        '''
     fh.write(fh_pre_data)
     fh.write("<center><h2><a href=" + url + ">" + anime_name + "</a></h2><br>")
 
@@ -96,9 +108,12 @@ def csv2html(anime_name, url):
     for i in fo.readlines()[l::-1]:
         ep = i.split('~')[::2][0]
         link = i.split('~')[::-1][0]
-        final = "EP " + ep + ': ' + '<a href=' + '"' + link + '"' + '>Link</a>'
+        final = "<td>" + ep + '<td><td>' + '<a href=' + \
+            '"' + link + '"' + '>Link</a></td>'
+        fh.write("<tr>")
         fh.write(final)
-        fh.write('</br>')
+        fh.write("</tr>")
 
+    fh.write("</table></center></body></html>")
     fh.close()
     fo.close()
