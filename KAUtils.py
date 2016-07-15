@@ -61,7 +61,7 @@ def FetchInfo(driver, url):
 
             fo.write(ep_detail)
             fo.write("\n")
-            print ("\b\rEP count: " + str(final_counter))
+            print ("\rEP count: " + str(final_counter))
             fo.close()
         except(IndexError):
             print "[!] Error Occured\nConverting CSV and Quitting"
@@ -102,7 +102,7 @@ td{
         '''
     fh.write(fh_pre_data)
     fh.write("<center><h2><a href=" + url + ">" + anime_name + "</a></h2><br>")
-
+    fh.write('<table id="main_table">')
     l = len(fo.readlines()) - 1
     fo.seek(0, 0)
     for i in fo.readlines()[l::-1]:
