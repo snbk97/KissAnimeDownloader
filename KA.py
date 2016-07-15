@@ -11,6 +11,7 @@ anime = url.split('http://kissanime.to/Anime/')[1]
 
 if('http://kissanime.to' in url):
     browser = webdriver.PhantomJS()
+    browser.delete_all_cookies()
     KAUtils.FetchInfo(browser, url)
     browser.close()
     KAUtils.csv2html(anime, url)
